@@ -34,7 +34,8 @@ module.exports = (sequelize, DataType) => {
     }, {
         classMethods: {
             associate: (models) => {
-                Invitations.belongsToMany(models.Users, {through: 'UserInvitations', foreignKey: 'invitation_id'});
+                Invitations.belongsTo(models.Users, {foreignKey: 'sender_id'});
+                Invitations.belongsTo(models.Users, {foreignKey: 'receiver_id'});
                 Invitations.belongsTo(models.Projects, {foreignKey: 'project_id'});
             }
         }

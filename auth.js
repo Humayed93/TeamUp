@@ -8,6 +8,7 @@ module.exports = app => {
     secretOrKey: cfg.jwtSecret,
     jwtFromRequest: ExtractJwt.fromAuthHeader()
   };
+
   const strategy = new Strategy(params, (payload, done) => {
       Users.findById(payload.id)
         .then(user => {
@@ -21,6 +22,7 @@ module.exports = app => {
         })
         .catch(error => done(error, null));
     });
+
   passport.use(strategy);
   return {
     initialize: () => {

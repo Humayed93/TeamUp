@@ -22,7 +22,7 @@ module.exports = app => {
    * @apiErrorExample {json} Authentication error
    *    HTTP/1.1 401 Unauthorized
    */
-  app.post("/login", (req, res) => {
+  app.post("/api/login", (req, res) => {
     if (req.body.email && req.body.password) {
       const email = req.body.email;
       const password = req.body.password;
@@ -30,8 +30,12 @@ module.exports = app => {
         .then(user => {
           if (Users.isPassword(user.password, password)) {
             const payload = {id: user.id};
+            const tokenv = jwt.encode(payload, cfg.jwtSecret);
+            user.update({
+              token: tokenv
+            });
             res.json({
-              token: jwt.encode(payload, cfg.jwtSecret)
+              token: tokenv
             });
           } else {
             res.sendStatus(401);

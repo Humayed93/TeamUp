@@ -19,10 +19,8 @@ module.exports = (sequelize, DataType) => {
     }, {
         classMethods: {
             associate: (models) => {
-                //Projects.belongsTo(models.Users);
                 Projects.belongsToMany(models.Tags, {through: 'ProjectTags'});
-                Projects.hasMany(models.Members, {foreignKey: 'project_id'});
-                //Projects.belongsTo(models.Invitations, {foreignKey: 'project_id'});
+                Projects.belongsToMany(models.Users, {through: 'Members'});
             }
         }
     });

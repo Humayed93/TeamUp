@@ -34,6 +34,9 @@ module.exports = (sequelize, DataType) => {
       type: DataType.ENUM,
       values: ['ACTIVE', 'PENDING', 'REJECTED'],
       defaultValue: 'PENDING'
+    },
+    token: {
+      type: DataType.STRING
     }
   }, {
     hooks: {
@@ -44,10 +47,9 @@ module.exports = (sequelize, DataType) => {
     },
     classMethods: {
       associate: models => {
+        Users.belongsToMany(models.Projects, {through: 'Members'});
         Users.hasMany(models.Projects, {foreignKey: 'owner_id'});
         Users.belongsToMany(models.Skills, {through: 'UserSkills', foreignKey: 'user_id'});
-        Users.belongsToMany(models.Invitations, {through: 'UserInvitations', foreignKey: 'user_id'});
-        Users.hasMany(models.Members, {foreignKey: 'user_id'});
       },
       isPassword: (encodedPassword, password) => {
         return bcrypt.compareSync(password, encodedPassword);
