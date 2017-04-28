@@ -6,7 +6,7 @@ module.exports = app => {
 
     .get((req, res) => {
       Tasks.findAll({
-        where: { member_id: req.user.id }
+        where: { member_member_id: req.user.id }
       })
       .then(result => res.json(result))
       .catch(error => {
@@ -15,7 +15,7 @@ module.exports = app => {
     })
 
     .post((req, res) => {
-      req.body.user_id = req.user.id;
+      req.body.member_member_id = req.user.id;
       Tasks.create(req.body)
         .then(result => res.json(result))
         .catch(error => {
@@ -29,7 +29,7 @@ module.exports = app => {
     .get((req, res) => {
       Tasks.findOne({ where: {
         id: req.params.id,
-        user_id: req.user.id
+        member_member_id: req.user.id
       }})
       .then(result => {
         if (result) {
@@ -46,7 +46,7 @@ module.exports = app => {
     .put((req, res) => {
       Tasks.update(req.body, { where: {
         id: req.params.id,
-        user_id: req.user.id
+        member_member_id: req.user.id
       }})
       .then(result => res.sendStatus(204))
       .catch(error => {
@@ -57,7 +57,7 @@ module.exports = app => {
     .delete((req, res) => {
       Tasks.destroy({ where: {
         id: req.params.id,
-        user_id: req.user.id
+        member_member_id: req.user.id
       }})
       .then(result => res.sendStatus(204))
       .catch(error => {
