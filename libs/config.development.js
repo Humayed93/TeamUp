@@ -5,11 +5,11 @@ module.exports = {
   // phpmyadmin's username & password
   // root root
   database: "team",
-  username: "waleed",
-  password: "waleed",
+  username: "root",
+  password: "root",
   params: {
     // mac:8889, Windows:3306
-    port: 3306,
+    port: 8889,
     dialect: "mysql",
     logging: (sql) => {
       logger.info(`[${new Date()}] ${sql}`);
