@@ -30,6 +30,15 @@ module.exports = (sequelize, DataType) => {
     website: {
       type: DataType.STRING
     },
+    twitter: {
+      type: DataType.STRING
+    },
+    facebook: {
+      type: DataType.STRING
+    },
+    linkedin: {
+      type: DataType.STRING
+    },
     states: {
       type: DataType.ENUM,
       values: ['ACTIVE', 'PENDING', 'REJECTED'],
@@ -49,7 +58,6 @@ module.exports = (sequelize, DataType) => {
       associate: models => {
         Users.belongsToMany(models.Projects, {through: 'Members'});
         Users.hasMany(models.Projects, {foreignKey: 'owner_id'});
-        Users.belongsToMany(models.Skills, {through: 'UserSkills', foreignKey: 'user_id'});
       },
       isPassword: (encodedPassword, password) => {
         return bcrypt.compareSync(password, encodedPassword);

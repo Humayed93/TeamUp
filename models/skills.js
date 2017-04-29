@@ -10,12 +10,12 @@ module.exports = (sequelize, DataType) => {
             allowNull: false,
             validate: {
                 notEmpty: true
-            }
+            },
+            unique: true
         }
     }, {
         classMethods: {
             associate: (models) => {
-                Skills.belongsToMany(models.Users, {through: 'UserSkills'});
             }
         }
     });
