@@ -1,5 +1,4 @@
 module.exports = app => {
-    const Users = app.db.models.Users;
     const Skills = app.db.models.Skills;
     const UserSkills = app.db.models.UserSkills;
     const ProjectSkills = app.db.models.ProjectSkills;
@@ -38,7 +37,7 @@ module.exports = app => {
                 });
         });
 
-    app.route("/api/users/skills")
+    app.route("/api/user/skills")
         .all(app.auth.authenticate())
 
         .get((req, res) => {

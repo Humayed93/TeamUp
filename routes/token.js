@@ -1,4 +1,3 @@
-//import jwt from "jwt-simple";
 var jwt = require('jwt-simple');
 
 module.exports = app => {

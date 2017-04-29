@@ -1,7 +1,7 @@
 module.exports = app => {
   const Tasks = app.db.models.Tasks;
 
-  app.route("/tasks")
+  app.route("/api/tasks")
     .all(app.auth.authenticate())
 
     .get((req, res) => {
@@ -12,18 +12,9 @@ module.exports = app => {
       .catch(error => {
         res.status(412).json({msg: error.message});
       });
-    })
-
-    .post((req, res) => {
-      req.body.member_member_id = req.user.id;
-      Tasks.create(req.body)
-        .then(result => res.json(result))
-        .catch(error => {
-          res.status(412).json({msg: error.message});
-        });
     });
 
-  app.route("/tasks/:id")
+  app.route("/api/tasks/:id")
     .all(app.auth.authenticate())
 
     .get((req, res) => {
@@ -64,4 +55,29 @@ module.exports = app => {
         res.status(412).json({msg: error.message});
       });
     });
+
+    app.route("/api/project/:id/tasks")
+        .all(app.auth.authenticate())
+
+        .get((req, res) => {
+            Tasks.findAll({
+                where: { member_member_id: req.user.id,
+                    project_id: req.params.id
+                }
+            })
+                .then(result => res.json(result))
+                .catch(error => {
+                    res.status(412).json({msg: error.message});
+                });
+        })
+
+        .post((req, res) => {
+            req.body.member_member_id = req.user.id;
+            req.body.project_id = req.params.id;
+            Tasks.create(req.body)
+                .then(result => res.json(result))
+                .catch(error => {
+                    res.status(412).json({msg: error.message});
+                });
+        })
 };

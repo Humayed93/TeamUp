@@ -20,7 +20,14 @@ module.exports = (sequelize, DataType) => {
     deadline: {
         type: DataType.DATE,
         allowNull: false
-    }
+    },
+      project_id: {
+          type: DataType.INTEGER,
+          references: {
+              model: "Projects",
+              key: "id"
+          }
+      }
   }, {
     classMethods: {
       associate: (models) => {

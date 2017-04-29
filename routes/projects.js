@@ -75,7 +75,7 @@ module.exports = app => {
                 });
         });
 
-    app.route("/api/myprojects/:id")
+    app.route("/api/myproject/:id")
         .all(app.auth.authenticate())
         /**
          * @api {get} /tasks/:id Get a task
@@ -182,7 +182,7 @@ module.exports = app => {
                 });
         });
 
-    app.route("/api/projects/:id")
+    app.route("/api/project/:id")
         .get((req, res) => {
             Projects.findOne({ where: {
                 id: req.params.id
@@ -201,7 +201,7 @@ module.exports = app => {
 
     app.route("/api/projects/owner/:id")
         .get((req, res) => {
-            Projects.findOne({ where: {
+            Projects.findAll({ where: {
                 owner_id: req.params.id
             }})
                 .then(result => {

@@ -15,12 +15,14 @@ module.exports = (sequelize, DataType) => {
         description: {
             type: DataType.TEXT,
             allowNull: false
+        },
+        deadline: {
+            type: DataType.DATE,
+            allowNull: false
         }
     }, {
         classMethods: {
             associate: (models) => {
-                Projects.belongsToMany(models.Tags, {through: 'ProjectTags'});
-                Projects.belongsToMany(models.Users, {through: 'Members'});
             }
         }
     });

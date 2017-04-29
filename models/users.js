@@ -56,7 +56,6 @@ module.exports = (sequelize, DataType) => {
     },
     classMethods: {
       associate: models => {
-        Users.belongsToMany(models.Projects, {through: 'Members'});
         Users.hasMany(models.Projects, {foreignKey: 'owner_id'});
       },
       isPassword: (encodedPassword, password) => {

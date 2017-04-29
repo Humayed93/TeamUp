@@ -8,6 +8,14 @@ module.exports = (sequelize, DataType) => {
                 key: "id"
             }
         },
+        project_id: {
+            type: DataType.INTEGER,
+            primaryKey: true,
+            references: {
+                model: "Projects",
+                key: "id"
+            }
+        },
         states: {
             type: DataType.ENUM,
             values: ['ACTIVE', 'PENDING', 'REJECTED'],
@@ -16,9 +24,7 @@ module.exports = (sequelize, DataType) => {
     }, {
         classMethods: {
             associate: (models) => {
-                //Members.belongsToMany(models.Users, {through: 'ProjectTags'});
-                //Members.belongsTo(models.Projects);
-                //Members.hasMany(models.Tasks);
+
             }
         }
     });
