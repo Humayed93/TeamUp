@@ -73,13 +73,13 @@ module.exports = app => {
                 });
         });
 
-    app.route("/api/users/skill/:id")
+    app.route("/api/users/skill/:skill_title")
         .all(app.auth.authenticate())
 
         .delete((req, res) => {
             UserSkills.destroy({
                 where: {
-                    id: req.params.id
+                    skill_title: req.params.skill_title
                 }
             })
                 .then(result => {
@@ -92,7 +92,7 @@ module.exports = app => {
                 .catch(error => {
                     res.status(412).json({msg: error.message});
                 });
-        })
+        });
 
     // Project skills
     app.route("/api/project/:id/skills")
