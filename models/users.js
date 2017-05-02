@@ -22,7 +22,7 @@ module.exports = (sequelize, DataType) => {
       type: DataType.TEXT
     },
     phone: {
-      type: DataType.INTEGER
+      type: DataType.STRING
     },
     major: {
       type: DataType.STRING
