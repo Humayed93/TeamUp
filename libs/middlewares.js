@@ -5,6 +5,7 @@ var cors = require('cors');
 var compression = require('compression');
 var helmet = require('helmet');
 var logger = require('./logger.js');
+var cookieParser = require('cookie-parser')
 
 
 
@@ -27,6 +28,7 @@ module.exports = app => {
   app.use(compression());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
+  app.use(cookieParser());
   app.use(app.auth.initialize());
   app.use((req, res, next) => {
     delete req.body.id;

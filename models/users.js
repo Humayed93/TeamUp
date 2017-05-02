@@ -43,9 +43,6 @@ module.exports = (sequelize, DataType) => {
       type: DataType.ENUM,
       values: ['ACTIVE', 'PENDING', 'REJECTED'],
       defaultValue: 'PENDING'
-    },
-    token: {
-      type: DataType.STRING
     }
   }, {
     hooks: {

@@ -30,9 +30,7 @@ module.exports = app => {
           if (Users.isPassword(user.password, password)) {
             const payload = {id: user.id};
             const tokenv = jwt.encode(payload, cfg.jwtSecret);
-            user.update({
-              token: tokenv
-            });
+            res.cookie('jwt', tokenv);
             res.json({
               token: tokenv
             });
@@ -45,4 +43,14 @@ module.exports = app => {
       res.sendStatus(401);
     }
   });
+
+    app.post("/api/logout", (req, res) => {
+        clearCookie('jwt');
+        res.send('Cookie deleted');
+    });
 };
+
+/*
+user.update({
+ token: tokenv
+ });*/
