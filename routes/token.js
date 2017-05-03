@@ -45,7 +45,7 @@ module.exports = app => {
   });
 
     app.post("/api/logout", (req, res) => {
-        clearCookie('jwt');
+        res.clearCookie('jwt');
         res.send('Cookie deleted');
     });
 };
