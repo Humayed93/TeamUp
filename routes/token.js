@@ -49,8 +49,3 @@ module.exports = app => {
         res.send('Cookie deleted');
     });
 };
-
-/*
-user.update({
- token: tokenv
- });*/

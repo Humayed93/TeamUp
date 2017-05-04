@@ -73,7 +73,7 @@ module.exports = app => {
                 });
         });
 
-    app.route("/api/users/skill/:id")
+    app.route("/api/user/skill/:id")
         .all(app.auth.authenticate())
 
         .delete((req, res) => {
@@ -112,7 +112,7 @@ module.exports = app => {
                 .catch(error => {
                     res.status(412).json({msg: error.message});
                 });
-        })
+        });
 
     app.route("/api/myproject/:id/skills")
         .all(app.auth.authenticate())
