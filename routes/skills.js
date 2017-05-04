@@ -73,13 +73,13 @@ module.exports = app => {
                 });
         });
 
-    app.route("/api/users/skill/:skill_title")
+    app.route("/api/users/skill/:id")
         .all(app.auth.authenticate())
 
         .delete((req, res) => {
             UserSkills.destroy({
                 where: {
-                    skill_title: req.params.skill_title
+                    id: req.params.id
                 }
             })
                 .then(result => {
@@ -96,8 +96,6 @@ module.exports = app => {
 
     // Project skills
     app.route("/api/project/:id/skills")
-        .all(app.auth.authenticate())
-
         .get((req, res) => {
             ProjectSkills.findAll({
                 where: {
@@ -116,6 +114,9 @@ module.exports = app => {
                 });
         })
 
+    app.route("/api/myproject/:id/skills")
+        .all(app.auth.authenticate())
+
         .post((req, res) => {
             req.body.project_id = req.params.id;
             ProjectSkills.create(req.body)
@@ -131,7 +132,7 @@ module.exports = app => {
                 });
         });
 
-    app.route("/api/project/:pid/skill/:id")
+    app.route("/api/myproject/:pid/skill/:id")
         .all(app.auth.authenticate())
 
         .delete((req, res) => {
