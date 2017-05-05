@@ -10,7 +10,7 @@ var cookieParser = require('cookie-parser')
 
 
 module.exports = app => {
-  app.set("port", 3000);
+  app.set("port", process.env.PORT || 3000);
   app.set("json spaces", 4);
   app.use(morgan("common", {
     stream: {
@@ -21,9 +21,10 @@ module.exports = app => {
   }));
   app.use(helmet());
   app.use(cors({
-    origin: ["http://localhost:3001"],// web
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"]
+    origin: ["http://localhost"],// web
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
   }));
   app.use(compression());
   app.use(bodyParser.urlencoded({ extended: true }));
