@@ -21,9 +21,10 @@ module.exports = app => {
   }));
   app.use(helmet());
   app.use(cors({
-    origin: ["http://localhost:3001"],// web
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"]
+    origin: ["http://localhost:8888","http://localhost:8889"],// web
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+    credentials: true
   }));
   app.use(compression());
   app.use(bodyParser.urlencoded({ extended: true }));

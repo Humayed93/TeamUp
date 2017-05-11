@@ -12,7 +12,8 @@ module.exports = (sequelize, DataType) => {
             references: {
                 model: "Users",
                 key: "id"
-            }
+            },
+            unique: true
         },
     }, {
         classMethods: {

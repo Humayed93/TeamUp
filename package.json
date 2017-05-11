@@ -6,14 +6,7 @@
   "scripts": {
     "start": "npm run app",
     "app": "babel-node index.js",
-    "test": "NODE_ENV=test mocha test/**/*.js",
-    "apidoc": "apidoc -i routes/ -o public/apidoc"
-  },
-  "apidoc": {
-    "name": "TeamUp API - Documentation",
-    "template": {
-      "forceLanguage": "en"
-    }
+    "test": "NODE_ENV=test mocha test/**/*.js"
   },
   "author": "Waleed Humayed",
   "dependencies": {
@@ -36,10 +29,6 @@
     "winston": "^2.1.1"
   },
   "devDependencies": {
-    "apidoc": "^0.15.1",
-    "babel-register": "^6.5.2",
-    "chai": "^3.5.0",
-    "mocha": "^2.4.5",
-    "supertest": "^1.2.0"
+    "babel-register": "^6.5.2"
   }
 }
